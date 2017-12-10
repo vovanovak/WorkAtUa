@@ -1,0 +1,98 @@
+﻿.headerMenuButton{
+	font-size: 12pt;
+	margin: 5px;
+	font-weight: bold;
+	background: #00a1f1;
+	color: white;
+	font-family: Arial;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	line-height: 20px;
+	margin-top: 20px;
+}
+.headerMenuButton:hover{
+	text-decoration: none;
+	cursor: pointer;
+	background: #0094df;
+}
+#mainContent {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#mainContentExpTitle{
+    font-size: 22pt;
+    font-weight: bold;
+    margin-top: 25px;
+}
+#mainContentExpFeautures{
+    font-size: 14pt;
+    margin-top: 17px;
+}
+
+#mainContentForm {
+    background:#f0f1f3;
+    width: 630px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+#mainContentFormCategoryFirst{
+    width: 630px;
+    background: #C0C0C0  ;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 2px solid #006ddd;
+    font-size: 14pt;
+    font-weight: bolder;
+    height: 40px;
+    line-height: 30pt;
+}
+.mainContentFormCategory{
+    width: 630px;
+    background: #C0C0C0  ;
+    border-bottom: 2px solid #006ddd;
+    font-size: 14pt;
+    font-weight: bolder;
+    height: 40px;
+    line-height: 30pt;
+    margin-top: 20px;
+}
+.mainContentFormControlContainer {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.mainContentFormLabel{
+    font-size: 12pt;
+    font-weight: bolder;
+    font-family: Arial;
+}
+.mainContentFormTextBox{
+    font-size: 12pt;
+    width: 250px;
+    font-family: Arial;
+}
+
+.mainContentFormControlContainerItem{
+    margin-top: 10px;
+}
+
+.mainContentFormControlContainerItemCompanyType{
+    margin-top: 5px;
+}
+
+.checkBoxList {
+}
+.mainContentFormError {
+    display:none;
+}
+.controlErrorImg {
+    position: relative;
+    left: -26px;
+    top: 2px;
+}
+.controlErrorText {
+    color: red;
+}

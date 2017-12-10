@@ -1,0 +1,1556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WorkAtUaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="VacancyId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="TypeOfCompany" Type="int" Nullable="false" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Place" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Speciality" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Post" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Start" Type="date" Nullable="false" />
+          <Property Name="End" Type="date" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchAgents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Request" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchAgentsEmployer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Request" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchResults">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="VacancyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchResultsEmployer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Header" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JobExperienceId" Type="int" />
+          <Property Name="EducationId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetailsInCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDetailsId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="FathersName" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="CompanyDetails" Type="int" />
+          <Property Name="UserDetails" Type="int" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="MinSalary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MaxSalary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmployerName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmployerPhone" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Requirments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TypeOfEmployment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsSolved" Type="bit" Nullable="false" />
+          <Property Name="CreationTime" Type="date" />
+        </EntityType>
+        <EntityType Name="VacancyInCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacancyId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VacancyInComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacancyId" Type="int" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VacancyInUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VacancyId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__SearchAge__UserI__3A02903A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchAgents" Type="Self.SearchAgents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchAgents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchAge__UserI__53C2623D">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchAgentsEmployer" Type="Self.SearchAgentsEmployer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchAgentsEmployer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__Agent__4EFDAD20">
+          <End Role="SearchAgents" Type="Self.SearchAgents" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchResults" Type="Self.SearchResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchAgents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResults">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__Agent__5A6F5FCC">
+          <End Role="SearchAgentsEmployer" Type="Self.SearchAgentsEmployer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchResultsEmployer" Type="Self.SearchResultsEmployer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchAgentsEmployer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResultsEmployer">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__UserI__5B638405">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SearchResultsEmployer" Type="Self.SearchResultsEmployer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResultsEmployer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__Vacan__4FF1D159">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1" />
+          <End Role="SearchResults" Type="Self.SearchResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResults">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__Categ__14D10B8B">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="UserDetailsInCategory" Type="Self.UserDetailsInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetailsInCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__Educa__11007AA7">
+          <End Role="Education" Type="Self.Education" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__JobEx__100C566E">
+          <End Role="JobExperience" Type="Self.JobExperience" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobExperience">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="JobExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__UserD__13DCE752">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+          <End Role="UserDetailsInCategory" Type="Self.UserDetailsInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetailsInCategory">
+              <PropertyRef Name="UserDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInCat__Categ__25FB978D">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInCategory" Type="Self.UserInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInCat__UserI__25077354">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInCategory" Type="Self.UserInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInCategory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInRol__RoleI__222B06A9">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInRole" Type="Self.UserInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInRol__UserI__2136E270">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInRole" Type="Self.UserInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__CityId__1C722D53">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__CompanyDe__1D66518C">
+          <End Role="CompanyDetails" Type="Self.CompanyDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CompanyDetails" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__UserDetai__1E5A75C5">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserDetails" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vacancy__Company__28D80438">
+          <End Role="CompanyDetails" Type="Self.CompanyDetails" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Categ__2F8501C7">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInCategory" Type="Self.VacancyInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Comme__335592AB">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInComment" Type="Self.VacancyInComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__UserI__3726238F">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="VacancyInUser" Type="Self.VacancyInUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Vacan__2E90DD8E">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInCategory" Type="Self.VacancyInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInCategory">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Vacan__32616E72">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInComment" Type="Self.VacancyInComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInComment">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Vacan__3631FF56">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInUser" Type="Self.VacancyInUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInUser">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkAtUaModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyDetails" EntityType="Self.CompanyDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobExperience" EntityType="Self.JobExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchAgents" EntityType="Self.SearchAgents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchAgentsEmployer" EntityType="Self.SearchAgentsEmployer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchResults" EntityType="Self.SearchResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchResultsEmployer" EntityType="Self.SearchResultsEmployer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetailsInCategory" EntityType="Self.UserDetailsInCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInCategory" EntityType="Self.UserInCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInRole" EntityType="Self.UserInRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VacancyInCategory" EntityType="Self.VacancyInCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VacancyInComment" EntityType="Self.VacancyInComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VacancyInUser" EntityType="Self.VacancyInUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SearchAge__UserI__3A02903A" Association="Self.FK__SearchAge__UserI__3A02903A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SearchAgents" EntitySet="SearchAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchAge__UserI__53C2623D" Association="Self.FK__SearchAge__UserI__53C2623D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SearchAgentsEmployer" EntitySet="SearchAgentsEmployer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__Agent__4EFDAD20" Association="Self.FK__SearchRes__Agent__4EFDAD20">
+            <End Role="SearchAgents" EntitySet="SearchAgents" />
+            <End Role="SearchResults" EntitySet="SearchResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__Agent__5A6F5FCC" Association="Self.FK__SearchRes__Agent__5A6F5FCC">
+            <End Role="SearchAgentsEmployer" EntitySet="SearchAgentsEmployer" />
+            <End Role="SearchResultsEmployer" EntitySet="SearchResultsEmployer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__UserI__5B638405" Association="Self.FK__SearchRes__UserI__5B638405">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SearchResultsEmployer" EntitySet="SearchResultsEmployer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__Vacan__4FF1D159" Association="Self.FK__SearchRes__Vacan__4FF1D159">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="SearchResults" EntitySet="SearchResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__Categ__14D10B8B" Association="Self.FK__UserDetai__Categ__14D10B8B">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="UserDetailsInCategory" EntitySet="UserDetailsInCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__Educa__11007AA7" Association="Self.FK__UserDetai__Educa__11007AA7">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__JobEx__100C566E" Association="Self.FK__UserDetai__JobEx__100C566E">
+            <End Role="JobExperience" EntitySet="JobExperience" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__UserD__13DCE752" Association="Self.FK__UserDetai__UserD__13DCE752">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="UserDetailsInCategory" EntitySet="UserDetailsInCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInCat__Categ__25FB978D" Association="Self.FK__UserInCat__Categ__25FB978D">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="UserInCategory" EntitySet="UserInCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInCat__UserI__25077354" Association="Self.FK__UserInCat__UserI__25077354">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserInCategory" EntitySet="UserInCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInRol__RoleI__222B06A9" Association="Self.FK__UserInRol__RoleI__222B06A9">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserInRole" EntitySet="UserInRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInRol__UserI__2136E270" Association="Self.FK__UserInRol__UserI__2136E270">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserInRole" EntitySet="UserInRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__CityId__1C722D53" Association="Self.FK__Users__CityId__1C722D53">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__CompanyDe__1D66518C" Association="Self.FK__Users__CompanyDe__1D66518C">
+            <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__UserDetai__1E5A75C5" Association="Self.FK__Users__UserDetai__1E5A75C5">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vacancy__Company__28D80438" Association="Self.FK__Vacancy__Company__28D80438">
+            <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Categ__2F8501C7" Association="Self.FK__VacancyIn__Categ__2F8501C7">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="VacancyInCategory" EntitySet="VacancyInCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Comme__335592AB" Association="Self.FK__VacancyIn__Comme__335592AB">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="VacancyInComment" EntitySet="VacancyInComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__UserI__3726238F" Association="Self.FK__VacancyIn__UserI__3726238F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VacancyInUser" EntitySet="VacancyInUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Vacan__2E90DD8E" Association="Self.FK__VacancyIn__Vacan__2E90DD8E">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="VacancyInCategory" EntitySet="VacancyInCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Vacan__32616E72" Association="Self.FK__VacancyIn__Vacan__32616E72">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="VacancyInComment" EntitySet="VacancyInComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Vacan__3631FF56" Association="Self.FK__VacancyIn__Vacan__3631FF56">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="VacancyInUser" EntitySet="VacancyInUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorkAtUaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserDetailsInCategories" Relationship="Self.FK__UserDetai__Categ__14D10B8B" FromRole="Categories" ToRole="UserDetailsInCategory" />
+          <NavigationProperty Name="UserInCategories" Relationship="Self.FK__UserInCat__Categ__25FB978D" FromRole="Categories" ToRole="UserInCategory" />
+          <NavigationProperty Name="VacancyInCategories" Relationship="Self.FK__VacancyIn__Categ__2F8501C7" FromRole="Categories" ToRole="VacancyInCategory" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__CityId__1C722D53" FromRole="Cities" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="VacancyId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VacancyInComments" Relationship="Self.FK__VacancyIn__Comme__335592AB" FromRole="Comment" ToRole="VacancyInComment" />
+        </EntityType>
+        <EntityType Name="CompanyDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeOfCompany" Type="Int32" Nullable="false" />
+          <Property Name="WebSite" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__CompanyDe__1D66518C" FromRole="CompanyDetails" ToRole="Users" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancy__Company__28D80438" FromRole="CompanyDetails" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Place" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Speciality" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK__UserDetai__Educa__11007AA7" FromRole="Education" ToRole="UserDetails" />
+        </EntityType>
+        <EntityType Name="JobExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Post" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="End" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK__UserDetai__JobEx__100C566E" FromRole="JobExperience" ToRole="UserDetails" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserInRoles" Relationship="Self.FK__UserInRol__RoleI__222B06A9" FromRole="Roles" ToRole="UserInRole" />
+        </EntityType>
+        <EntityType Name="SearchAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Request" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__SearchAge__UserI__3A02903A" FromRole="SearchAgents" ToRole="Users" />
+          <NavigationProperty Name="SearchResults" Relationship="Self.FK__SearchRes__Agent__4EFDAD20" FromRole="SearchAgents" ToRole="SearchResults" />
+        </EntityType>
+        <EntityType Name="SearchAgentsEmployer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Request" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__SearchAge__UserI__53C2623D" FromRole="SearchAgentsEmployer" ToRole="Users" />
+          <NavigationProperty Name="SearchResultsEmployers" Relationship="Self.FK__SearchRes__Agent__5A6F5FCC" FromRole="SearchAgentsEmployer" ToRole="SearchResultsEmployer" />
+        </EntityType>
+        <EntityType Name="SearchResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <Property Name="VacancyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SearchAgent" Relationship="Self.FK__SearchRes__Agent__4EFDAD20" FromRole="SearchResults" ToRole="SearchAgents" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK__SearchRes__Vacan__4FF1D159" FromRole="SearchResults" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="SearchResultsEmployer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SearchAgentsEmployer" Relationship="Self.FK__SearchRes__Agent__5A6F5FCC" FromRole="SearchResultsEmployer" ToRole="SearchAgentsEmployer" />
+          <NavigationProperty Name="User" Relationship="Self.FK__SearchRes__UserI__5B638405" FromRole="SearchResultsEmployer" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Header" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="JobExperienceId" Type="Int32" />
+          <Property Name="EducationId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Education" Relationship="Self.FK__UserDetai__Educa__11007AA7" FromRole="UserDetails" ToRole="Education" />
+          <NavigationProperty Name="JobExperience" Relationship="Self.FK__UserDetai__JobEx__100C566E" FromRole="UserDetails" ToRole="JobExperience" />
+          <NavigationProperty Name="UserDetailsInCategories" Relationship="Self.FK__UserDetai__UserD__13DCE752" FromRole="UserDetails" ToRole="UserDetailsInCategory" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__UserDetai__1E5A75C5" FromRole="UserDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UserDetailsInCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDetailsId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__UserDetai__Categ__14D10B8B" FromRole="UserDetailsInCategory" ToRole="Categories" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__UserDetai__UserD__13DCE752" FromRole="UserDetailsInCategory" ToRole="UserDetails" />
+        </EntityType>
+        <EntityType Name="UserInCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__UserInCat__Categ__25FB978D" FromRole="UserInCategory" ToRole="Categories" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserInCat__UserI__25077354" FromRole="UserInCategory" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UserInRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__UserInRol__RoleI__222B06A9" FromRole="UserInRole" ToRole="Roles" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserInRol__UserI__2136E270" FromRole="UserInRole" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FathersName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyDetails" Type="Int32" />
+          <Property Name="UserDetails" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Users__CityId__1C722D53" FromRole="Users" ToRole="Cities" />
+          <NavigationProperty Name="CompanyDetail" Relationship="Self.FK__Users__CompanyDe__1D66518C" FromRole="Users" ToRole="CompanyDetails" />
+          <NavigationProperty Name="SearchAgents" Relationship="Self.FK__SearchAge__UserI__3A02903A" FromRole="Users" ToRole="SearchAgents" />
+          <NavigationProperty Name="SearchAgentsEmployers" Relationship="Self.FK__SearchAge__UserI__53C2623D" FromRole="Users" ToRole="SearchAgentsEmployer" />
+          <NavigationProperty Name="SearchResultsEmployers" Relationship="Self.FK__SearchRes__UserI__5B638405" FromRole="Users" ToRole="SearchResultsEmployer" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__Users__UserDetai__1E5A75C5" FromRole="Users" ToRole="UserDetails" />
+          <NavigationProperty Name="UserInCategories" Relationship="Self.FK__UserInCat__UserI__25077354" FromRole="Users" ToRole="UserInCategory" />
+          <NavigationProperty Name="UserInRoles" Relationship="Self.FK__UserInRol__UserI__2136E270" FromRole="Users" ToRole="UserInRole" />
+          <NavigationProperty Name="VacancyInUsers" Relationship="Self.FK__VacancyIn__UserI__3726238F" FromRole="Users" ToRole="VacancyInUser" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfessionName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinSalary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MaxSalary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployerPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Requirments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeOfEmployment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsSolved" Type="Boolean" Nullable="false" />
+          <Property Name="CreationTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CompanyDetail" Relationship="Self.FK__Vacancy__Company__28D80438" FromRole="Vacancy" ToRole="CompanyDetails" />
+          <NavigationProperty Name="SearchResults" Relationship="Self.FK__SearchRes__Vacan__4FF1D159" FromRole="Vacancy" ToRole="SearchResults" />
+          <NavigationProperty Name="VacancyInCategories" Relationship="Self.FK__VacancyIn__Vacan__2E90DD8E" FromRole="Vacancy" ToRole="VacancyInCategory" />
+          <NavigationProperty Name="VacancyInComments" Relationship="Self.FK__VacancyIn__Vacan__32616E72" FromRole="Vacancy" ToRole="VacancyInComment" />
+          <NavigationProperty Name="VacancyInUsers" Relationship="Self.FK__VacancyIn__Vacan__3631FF56" FromRole="Vacancy" ToRole="VacancyInUser" />
+        </EntityType>
+        <EntityType Name="VacancyInCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacancyId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__VacancyIn__Categ__2F8501C7" FromRole="VacancyInCategory" ToRole="Categories" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK__VacancyIn__Vacan__2E90DD8E" FromRole="VacancyInCategory" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="VacancyInComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacancyId" Type="Int32" Nullable="false" />
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK__VacancyIn__Comme__335592AB" FromRole="VacancyInComment" ToRole="Comment" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK__VacancyIn__Vacan__32616E72" FromRole="VacancyInComment" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="VacancyInUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VacancyId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__VacancyIn__UserI__3726238F" FromRole="VacancyInUser" ToRole="Users" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK__VacancyIn__Vacan__3631FF56" FromRole="VacancyInUser" ToRole="Vacancy" />
+        </EntityType>
+        <Association Name="FK__UserDetai__Categ__14D10B8B">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="UserDetailsInCategory" Type="Self.UserDetailsInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetailsInCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInCat__Categ__25FB978D">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInCategory" Type="Self.UserInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Categ__2F8501C7">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInCategory" Type="Self.VacancyInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__CityId__1C722D53">
+          <End Role="Cities" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Comme__335592AB">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInComment" Type="Self.VacancyInComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__CompanyDe__1D66518C">
+          <End Role="CompanyDetails" Type="Self.CompanyDetail" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CompanyDetails" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vacancy__Company__28D80438">
+          <End Role="CompanyDetails" Type="Self.CompanyDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__Educa__11007AA7">
+          <End Role="Education" Type="Self.Education" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__JobEx__100C566E">
+          <End Role="JobExperience" Type="Self.JobExperience" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobExperience">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="JobExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInRol__RoleI__222B06A9">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInRole" Type="Self.UserInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchAge__UserI__3A02903A">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchAgents" Type="Self.SearchAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchAgents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__Agent__4EFDAD20">
+          <End Role="SearchAgents" Type="Self.SearchAgent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchResults" Type="Self.SearchResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchAgents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResults">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchAge__UserI__53C2623D">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchAgentsEmployer" Type="Self.SearchAgentsEmployer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchAgentsEmployer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__Agent__5A6F5FCC">
+          <End Role="SearchAgentsEmployer" Type="Self.SearchAgentsEmployer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SearchResultsEmployer" Type="Self.SearchResultsEmployer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SearchAgentsEmployer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResultsEmployer">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__Vacan__4FF1D159">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1" />
+          <End Role="SearchResults" Type="Self.SearchResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResults">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SearchRes__UserI__5B638405">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="SearchResultsEmployer" Type="Self.SearchResultsEmployer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SearchResultsEmployer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserDetai__UserD__13DCE752">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="UserDetailsInCategory" Type="Self.UserDetailsInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetailsInCategory">
+              <PropertyRef Name="UserDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__UserDetai__1E5A75C5">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserDetails" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInCat__UserI__25077354">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInCategory" Type="Self.UserInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInCategory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserInRol__UserI__2136E270">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserInRole" Type="Self.UserInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__UserI__3726238F">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="VacancyInUser" Type="Self.VacancyInUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Vacan__2E90DD8E">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInCategory" Type="Self.VacancyInCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInCategory">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Vacan__32616E72">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInComment" Type="Self.VacancyInComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInComment">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacancyIn__Vacan__3631FF56">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VacancyInUser" Type="Self.VacancyInUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VacancyInUser">
+              <PropertyRef Name="VacancyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="CompanyDetails" EntityType="Self.CompanyDetail" />
+          <EntitySet Name="Educations" EntityType="Self.Education" />
+          <EntitySet Name="JobExperiences" EntityType="Self.JobExperience" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="SearchAgents" EntityType="Self.SearchAgent" />
+          <EntitySet Name="SearchAgentsEmployers" EntityType="Self.SearchAgentsEmployer" />
+          <EntitySet Name="SearchResults" EntityType="Self.SearchResult" />
+          <EntitySet Name="SearchResultsEmployers" EntityType="Self.SearchResultsEmployer" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <EntitySet Name="UserDetailsInCategories" EntityType="Self.UserDetailsInCategory" />
+          <EntitySet Name="UserInCategories" EntityType="Self.UserInCategory" />
+          <EntitySet Name="UserInRoles" EntityType="Self.UserInRole" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Vacancies" EntityType="Self.Vacancy" />
+          <EntitySet Name="VacancyInCategories" EntityType="Self.VacancyInCategory" />
+          <EntitySet Name="VacancyInComments" EntityType="Self.VacancyInComment" />
+          <EntitySet Name="VacancyInUsers" EntityType="Self.VacancyInUser" />
+          <AssociationSet Name="FK__UserDetai__Categ__14D10B8B" Association="Self.FK__UserDetai__Categ__14D10B8B">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="UserDetailsInCategory" EntitySet="UserDetailsInCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInCat__Categ__25FB978D" Association="Self.FK__UserInCat__Categ__25FB978D">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="UserInCategory" EntitySet="UserInCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Categ__2F8501C7" Association="Self.FK__VacancyIn__Categ__2F8501C7">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="VacancyInCategory" EntitySet="VacancyInCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__CityId__1C722D53" Association="Self.FK__Users__CityId__1C722D53">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Comme__335592AB" Association="Self.FK__VacancyIn__Comme__335592AB">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="VacancyInComment" EntitySet="VacancyInComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__CompanyDe__1D66518C" Association="Self.FK__Users__CompanyDe__1D66518C">
+            <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vacancy__Company__28D80438" Association="Self.FK__Vacancy__Company__28D80438">
+            <End Role="CompanyDetails" EntitySet="CompanyDetails" />
+            <End Role="Vacancy" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__Educa__11007AA7" Association="Self.FK__UserDetai__Educa__11007AA7">
+            <End Role="Education" EntitySet="Educations" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__JobEx__100C566E" Association="Self.FK__UserDetai__JobEx__100C566E">
+            <End Role="JobExperience" EntitySet="JobExperiences" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInRol__RoleI__222B06A9" Association="Self.FK__UserInRol__RoleI__222B06A9">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserInRole" EntitySet="UserInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchAge__UserI__3A02903A" Association="Self.FK__SearchAge__UserI__3A02903A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SearchAgents" EntitySet="SearchAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__Agent__4EFDAD20" Association="Self.FK__SearchRes__Agent__4EFDAD20">
+            <End Role="SearchAgents" EntitySet="SearchAgents" />
+            <End Role="SearchResults" EntitySet="SearchResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchAge__UserI__53C2623D" Association="Self.FK__SearchAge__UserI__53C2623D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SearchAgentsEmployer" EntitySet="SearchAgentsEmployers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__Agent__5A6F5FCC" Association="Self.FK__SearchRes__Agent__5A6F5FCC">
+            <End Role="SearchAgentsEmployer" EntitySet="SearchAgentsEmployers" />
+            <End Role="SearchResultsEmployer" EntitySet="SearchResultsEmployers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__Vacan__4FF1D159" Association="Self.FK__SearchRes__Vacan__4FF1D159">
+            <End Role="Vacancy" EntitySet="Vacancies" />
+            <End Role="SearchResults" EntitySet="SearchResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SearchRes__UserI__5B638405" Association="Self.FK__SearchRes__UserI__5B638405">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SearchResultsEmployer" EntitySet="SearchResultsEmployers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__UserD__13DCE752" Association="Self.FK__UserDetai__UserD__13DCE752">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="UserDetailsInCategory" EntitySet="UserDetailsInCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__UserDetai__1E5A75C5" Association="Self.FK__Users__UserDetai__1E5A75C5">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInCat__UserI__25077354" Association="Self.FK__UserInCat__UserI__25077354">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserInCategory" EntitySet="UserInCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserInRol__UserI__2136E270" Association="Self.FK__UserInRol__UserI__2136E270">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserInRole" EntitySet="UserInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__UserI__3726238F" Association="Self.FK__VacancyIn__UserI__3726238F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VacancyInUser" EntitySet="VacancyInUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Vacan__2E90DD8E" Association="Self.FK__VacancyIn__Vacan__2E90DD8E">
+            <End Role="Vacancy" EntitySet="Vacancies" />
+            <End Role="VacancyInCategory" EntitySet="VacancyInCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Vacan__32616E72" Association="Self.FK__VacancyIn__Vacan__32616E72">
+            <End Role="Vacancy" EntitySet="Vacancies" />
+            <End Role="VacancyInComment" EntitySet="VacancyInComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacancyIn__Vacan__3631FF56" Association="Self.FK__VacancyIn__Vacan__3631FF56">
+            <End Role="Vacancy" EntitySet="Vacancies" />
+            <End Role="VacancyInUser" EntitySet="VacancyInUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorkAtUaModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="WorkAtUaModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="WorkAtUaModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="WorkAtUaModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyDetails">
+            <EntityTypeMapping TypeName="WorkAtUaModel.CompanyDetail">
+              <MappingFragment StoreEntitySet="CompanyDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeOfCompany" ColumnName="TypeOfCompany" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="WorkAtUaModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobExperiences">
+            <EntityTypeMapping TypeName="WorkAtUaModel.JobExperience">
+              <MappingFragment StoreEntitySet="JobExperience">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="WorkAtUaModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchAgents">
+            <EntityTypeMapping TypeName="WorkAtUaModel.SearchAgent">
+              <MappingFragment StoreEntitySet="SearchAgents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchAgentsEmployers">
+            <EntityTypeMapping TypeName="WorkAtUaModel.SearchAgentsEmployer">
+              <MappingFragment StoreEntitySet="SearchAgentsEmployer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchResults">
+            <EntityTypeMapping TypeName="WorkAtUaModel.SearchResult">
+              <MappingFragment StoreEntitySet="SearchResults">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchResultsEmployers">
+            <EntityTypeMapping TypeName="WorkAtUaModel.SearchResultsEmployer">
+              <MappingFragment StoreEntitySet="SearchResultsEmployer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="WorkAtUaModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="JobExperienceId" ColumnName="JobExperienceId" />
+                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetailsInCategories">
+            <EntityTypeMapping TypeName="WorkAtUaModel.UserDetailsInCategory">
+              <MappingFragment StoreEntitySet="UserDetailsInCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserDetailsId" ColumnName="UserDetailsId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInCategories">
+            <EntityTypeMapping TypeName="WorkAtUaModel.UserInCategory">
+              <MappingFragment StoreEntitySet="UserInCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInRoles">
+            <EntityTypeMapping TypeName="WorkAtUaModel.UserInRole">
+              <MappingFragment StoreEntitySet="UserInRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WorkAtUaModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="FathersName" ColumnName="FathersName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CompanyDetails" ColumnName="CompanyDetails" />
+                <ScalarProperty Name="UserDetails" ColumnName="UserDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancies">
+            <EntityTypeMapping TypeName="WorkAtUaModel.Vacancy">
+              <MappingFragment StoreEntitySet="Vacancy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="MinSalary" ColumnName="MinSalary" />
+                <ScalarProperty Name="MaxSalary" ColumnName="MaxSalary" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+                <ScalarProperty Name="EmployerPhone" ColumnName="EmployerPhone" />
+                <ScalarProperty Name="Requirments" ColumnName="Requirments" />
+                <ScalarProperty Name="TypeOfEmployment" ColumnName="TypeOfEmployment" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsSolved" ColumnName="IsSolved" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VacancyInCategories">
+            <EntityTypeMapping TypeName="WorkAtUaModel.VacancyInCategory">
+              <MappingFragment StoreEntitySet="VacancyInCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VacancyInComments">
+            <EntityTypeMapping TypeName="WorkAtUaModel.VacancyInComment">
+              <MappingFragment StoreEntitySet="VacancyInComment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VacancyInUsers">
+            <EntityTypeMapping TypeName="WorkAtUaModel.VacancyInUser">
+              <MappingFragment StoreEntitySet="VacancyInUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VacancyId" ColumnName="VacancyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

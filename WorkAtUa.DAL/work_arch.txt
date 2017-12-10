@@ -1,0 +1,67 @@
+class Vacancy {
+ 
+     public Employer EmployerId {get;set;}
+     public City CityId {get;set;}
+     public string Description {get;set;}
+     public double Salary {get;set;}
+     public Job JobId{get;set;}
+
+}
+
+class Comment {
+
+     public Vacancy VacancyId {get;set;}
+     public string Text {get;set;}
+     public Employer EmployerId {get;set;}
+
+}
+
+class User {
+	/*Functionality
+	@ Basic num of properties that are common for Employer, Employee and Admin 
+	*/
+
+	public string GetFullName(){
+		return Surname + " " + Name + " " + FathersName;
+	}
+}
+
+class Admin: User {
+	
+     public string Email { get; set;}
+     public string Password { get; set;}
+     public string Name { get; set;}
+     public string Surname { get; set;}
+     public DateTime Birthday { get; set;}
+     
+     /*Functionality:
+     @ Register new admin
+     @ Delete user
+     @ Delete comment
+     @ Delete vacancy
+     */
+        
+}
+
+class Employer: User  {
+	/*Functionality: 
+	@ Create vacancy
+        @ Search user by the vacancy
+        @ Send message to the employee or another employer
+        @ Change vacancy
+	@ Delete vacancy
+	@ Mark vacancy as solved
+	*/
+}
+
+class Employee: User {
+	
+	/*Functionality:
+	@ Subscribe for the vacancy and send resume
+	@ Create comment
+	@ Search vacancies
+	@ Create resume
+	@ Update resume
+	*/
+
+}

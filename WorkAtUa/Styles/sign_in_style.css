@@ -1,0 +1,202 @@
+﻿#main {
+    background-color: #B2D3F5;
+    width: 100%;
+    min-height: 700px;
+}
+#mainStat{
+    background-color: #00a1f1;
+    color: white;
+    height: 60px;
+    font-size: 20pt;
+    line-height: 36pt;
+}
+#mainSignInExp{
+    margin-left: auto; margin-right: auto; width: 700px;
+}
+
+#mainSignInForm {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background: #ffc;
+    font-family: Arial;
+    float: left;
+
+    margin-left: -20%;
+    margin-top: 40px;
+}
+
+#mainSignInFormHeader {
+    background: #feefab;
+    border-bottom: 1px solid #FFCF67;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 18pt;
+    font-family: Arial;
+    line-height: 28pt;
+}
+
+#mainSignInSelectType {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background: white;
+    font-family: Arial;
+    margin-top: 41px;
+    display:inline-block; 
+    margin-left: 300px;
+    display:inline-block;
+}
+
+#mainSignInSelectTypeHeader {
+    background: #daeaff;
+    border-bottom: 1px solid #B2D3F5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 18pt;
+    font-family: Arial;
+    line-height: 28pt;
+}
+
+#mainSignInFormControls {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.txtEmail {
+    margin-left: 35px;
+}
+.headerMenuButton{
+	font-size: 12pt;
+	margin-left: 80px;
+	font-weight: bold;
+	background: #00a1f1;
+	color: white;
+	font-family: Arial;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	line-height: 20px;
+	margin-top: 20px;
+}
+.headerMenuButton:hover{
+	text-decoration: none;
+	cursor: pointer;
+	background: #0094df;
+}
+       
+#mainSignInSelectControlsExp{
+    margin-top: 20px;
+    margin-left: 15px;
+}
+#mainSignInSelectControlsList{
+    margin-left: 15px;
+}
+#mainSignInSelectControlsList > li{
+    margin-top: 10px;
+}
+.mainSignInSelectControlsRoles{
+    margin-top: 20px;
+    margin-left: 15px;
+}    
+#mainSignInExp{
+    margin-left: auto; margin-right: auto; width: 700px;
+}
+#mainSignInForm {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    background: #ffc;
+}
+
+
+#mainSignInForm {
+            
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background: #ffc;
+    font-family: Arial;
+    float: left;
+
+    margin-top: 40px;
+}
+
+#mainSignInFormHeader {
+    background: #feefab;
+    border-bottom: 1px solid #FFCF67;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 18pt;
+    font-family: Arial;
+    line-height: 28pt;
+}
+
+#mainSignInSelectType {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background: white;
+    font-family: Arial;
+    margin-top: 41px;
+    display:inline-block; 
+    margin-left: 10%;
+}
+
+#mainSignInSelectTypeHeader {
+    background: #daeaff;
+    border-bottom: 1px solid #B2D3F5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 18pt;
+    font-family: Arial;
+    line-height: 28pt;
+}
+
+#mainSignInFormControls {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.txtEmail {
+    margin-left: 35px;
+}
+.headerMenuButton{
+	font-size: 12pt;
+	margin-left: 80px;
+	font-weight: bold;
+	background: #00a1f1;
+	color: white;
+	font-family: Arial;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	line-height: 20px;
+	margin-top: 20px;
+}
+.headerMenuButton:hover{
+	text-decoration: none;
+	cursor: pointer;
+	background: #0094df;
+}
+       
+#mainSignInSelectControlsExp{
+    margin-top: 20px;
+    margin-left: 15px;
+}
+#mainSignInSelectControlsList{
+    margin-left: 15px;
+}
+#mainSignInSelectControlsList > li{
+    margin-top: 10px;
+}
+.mainSignInSelectControlsRoles{
+    margin-top: 20px;
+    margin-left: 15px;
+}

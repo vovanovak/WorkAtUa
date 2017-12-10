@@ -1,0 +1,246 @@
+﻿@{
+    ViewBag.Title = "Item";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Work.at.ua - work in Ukraine</title>
+    <link rel="stylesheet" type="text/css" href="~/Styles/null_style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/expanded_style.css" />
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script>
+        function onSendResumeClick() {
+            var id = $(".vacId").text();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Subscribe", "Home")',
+                data: { vacId: id },
+                success: function(){
+                    
+                    $('#vacBtns').append('<div class="unsubscribeResume" style="background-color: gray;" onclick="onUnsubscribe()">Unsubscribe</div>');
+                    $('.sendResume').remove();
+                    //$('.sendResume').html('<div class="unsubscribeResume" style="background-color: gray;" onclick="onUnsubscribe()">Unsubscribe</div>');
+                },
+                error: function(){
+                    alert("Error");
+
+                }
+            });
+        }
+
+        function onUnsubscribe() {
+            var id = $(".vacId").text();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Unsubscribe", "Home")',
+                data: { vacId: id },
+                success: function () {
+                    $('#vacBtns').append('<div class="sendResume" onclick="onSendResumeClick()">Send Resume</div>');
+                    $('.unsubscribeResume').remove();
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        }
+        function focusOnInput() {
+            $("#bodyContentFormText").focus();
+        }
+        function postComment() {
+            var id = $(".vacId").text();
+            var text = $("#newComment").val();
+            
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("PostComment", "Home")',
+                data: { content: text, vacId: id },
+                success: function () {
+                    
+
+                    try {
+                        var username = '@string.Format("{0} {1}", (ViewBag.CurrentUser == null) ? " " : ViewBag.CurrentUser.Name, (ViewBag.CurrentUser == null) ? " " : ViewBag.CurrentUser.Surname)';
+                        var date = '@DateTime.Now.ToShortDateString()';
+                        var count = parseInt('@((ViewBag.Comments == null) ? "-1" : ViewBag.Comments.Count)', 10) + 1;
+                        $("#vacCommentsItems").append('<div class="vacComment"><span class="vacCommentName">' + username + '</span> <span class="vacCommentDate">' + date + '</span><div class="vacCommentContent">' + text + '</div></div>');
+
+                        $("#vacCommentsCount").text(count + " comments");
+                    } catch (e) {
+                       
+                    }
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div id="menu">
+            <div class="headerLogo">
+                <span class="headerLogoWork">WORK</span><span class="headerLogoUa">.ua</span>
+            </div>
+            <menu id="headerMenu">
+                <a onclick="focusOnInput()"><li class="headerMenuLi">Find vacancies</li></a>
+                @if (this.Session["Name"] != null)
+                {
+                     <a href="~/RegisterResume.aspx"><li class="headerMenuLi">Create resume</li></a>
+                }
+                else
+                {
+                    <a href="SignIn.aspx"><li class="headerMenuLi">Create resume</li></a>
+                }
+                <a href="http://www.work.ua"><li class="headerMenuLi">Resources</li></a>
+                @if (this.Session["Name"] != null)
+                {
+                    if (this.Session["Role"] == "Employer")
+                    {
+                        <a href="/Employer"><li class="headerMenuLi" style="text-decoration: underline;">@this.Session["Name"]</li></a>
+                    }
+                    else
+                    {
+                        <a href="/Employee"><li class="headerMenuLi" style="text-decoration: underline;">@this.Session["Name"]</li></a>
+                    }
+                }
+                else
+                {
+                    <a href="SignIn.aspx"><li style="list-style-type: none;"><div id="headerMenuButton">Sign In</div></li></a>
+                }
+            </menu>
+        </div>
+    </header>
+
+    <div id="mainStat">
+
+        <div style="width: 800px;  margin: 0 auto;">
+            @if (this.Session["Name"] != null)
+            {
+                <div class="sidebarItem"><a href="~/Employee/SearchAgents" style="color: white; text-decoration: none;">Search agents</a></div>
+                <div class="sidebarItem"><a href="~/Employee/Vacancies" style="color: white; text-decoration: none;">Selected vacancies</a></div>
+                <div class="sidebarItem"><a href="~/EditEmployee.aspx" style="color: white; text-decoration: none;">Private data</a></div>
+                <div class="sidebarItem"><a href="~/LogOut" style="color: white; text-decoration: none;">Log out</a></div>
+            }
+            else
+            {
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Search agents</a></div>
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Selected vacancies</a></div>
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Private data</a></div>
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Log out</a></div>
+            }
+        </div>
+    </div>
+
+
+
+    <div>
+
+
+        <div id="bodyVacancies">
+            <span id="bodyCountOfVac">Vacancy was published @ViewBag.Date</span>
+            <div class="vac">
+                <div><span class="vacHeader">@ViewBag.Vacancy.ProfessionName</span><span class="vacId" style="display: none;">@ViewBag.Vacancy.Id</span></div>
+                <div><span class="vacSalary">
+                   @if (ViewBag.Vacancy.MinSalary != ViewBag.Vacancy.MaxSalary)
+                   {
+                    <span>@string.Format("{0}-{1}$", ViewBag.Vacancy.MinSalary.ToString(), ViewBag.Vacancy.MaxSalary.ToString())</span>
+                   }
+                   else
+                   {
+                    <span>@string.Format("{0}$", ViewBag.Vacancy.MinSalary.ToString())</span>
+                   }</span></div>
+
+                <div style="margin-top: 30px;font-family: Arial,Tahoma,Verdana;">
+                    <div class="vacProp"><span class="vacPropName">Company: </span><span>@WorkAtUa.DBManager.DbManager.GetCompanyNameById(ViewBag.Vacancy.CompanyId)</span></div>
+                    <div class="vacProp"><span class="vacPropName">City: </span><span>@ViewBag.Vacancy.City</span></div>
+                    <div class="vacProp"><span class="vacPropName">Type of employment: </span><span>@ViewBag.Vacancy.TypeOfEmployment</span></div>
+                    <div class="vacProp"><span class="vacPropName">Requirments: </span><span></span>@ViewBag.Vacancy.Requirments</div>
+                    <div class="vacProp"><span class="vacPropName">Contact person: </span><span>@ViewBag.Vacancy.EmployerName</span></div>
+                    <div class="vacProp"><span class="vacPropName">Phone: </span><span></span>@ViewBag.Vacancy.EmployerPhone</div>
+                </div>
+
+                <div style=" padding-top: 20px;
+                     padding-bottom: 20px;"><span class="vacDescHeader">Vacancy Description</span></div>
+                <div>
+                    <span class="vacDesc">
+                       @ViewBag.Vacancy.Description
+                    </span>
+                </div>
+                <div id="vacBtns">
+                    @if (ViewBag.CurrentUser != null) { 
+                        if (!ViewBag.Subscribed)
+                        {
+                            <div class="sendResume" onclick="onSendResumeClick()">Send Resume</div>
+                        }
+                        else
+                        {
+                            <div class="unsubscribeResume" style="background-color: gray;" onclick="onUnsubscribe()">Unsubscribe</div>
+                        }
+                    }
+                </div>
+                <div id="vacComments">
+                    <div id="vacCommentsCount">@ViewBag.Comments.Count comments</div>
+                    <div id="vacCommentsItems">
+                        @foreach (WorkAtUa.Entities.MyComment my in ViewBag.Comments) {
+                        <div class="vacComment">
+                            <span class="vacCommentName">@WorkAtUa.DBManager.DbManager.GetUserNameById(my.UserId)</span>
+                            <span class="vacCommentDate">@my.Date.ToShortDateString()</span>
+                            <div class="vacCommentContent">@my.Content</div>
+                            
+                        </div>
+                        }
+                    </div>
+                    @if (ViewBag.CurrentUser != null)
+                    {
+                        <div id="leaveHeader">Leave your comment: </div>
+                        <textarea id="newComment" rows="10" cols="60">
+
+                        </textarea>
+                        <div><input type="button" id="submitComment" value="Post" onclick="postComment()" /></div>
+                    }
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <footer id="footer" style="margin-top: 10px;">
+        <div class="headerLogo">
+            <span class="headerLogoWork" style="margin-left: 4%;">WORK</span><span class="headerLogoUa">.ua</span>
+        </div>
+        <span class="footerExp">&copy;Work.at.ua - Work in Ukraine. Made in Rivne</span>
+
+        <div id="footerLinks">
+            <div class="footerItem">
+                <a href="http://www.work.ua" class="footerLink">Work.at.ua</a>
+                <span class="footerLinkExp">Work in Ukraine</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.osvita.com.ua" class="footerLink">Osvita.com.ua</a>
+                <span class="footerLinkExp">Education</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.trn.ua" class="footerLink">TRN.ua</a>
+                <span class="footerLinkExp">Trainings</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.vse10.ru" class="footerLink">Vse10.ru</a>
+                <span class="footerLinkExp">Keybord traning</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.ratatype.com" class="footerLink">Ratatype.com</a>
+                <span class="footerLinkExp">Typing tutor</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

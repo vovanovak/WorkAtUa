@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Vacancies";
+}
+
+
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="~/Styles/null_style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/employee_style.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div id="menu">
+            <div class="headerLogo">
+                <span class="headerLogoWork">WORK</span><span class="headerLogoUa">.ua</span>
+            </div>
+            <menu id="headerMenu">
+                <a href="~/Home"><li class="headerMenuLi">Find vacancies</li></a>
+                <a href="~/RegisterResume.aspx"><li class="headerMenuLi">Create resume</li></a>
+                <a href="http://www.work.ua"><li class="headerMenuLi">Resources</li></a>
+                <li class="headerMenuLi" style="color: #888888; font-size: 18pt;border-left:2px solid gray;padding-left: 30px;">@string.Format("{0} {1}", ViewBag.User.Name, ViewBag.User.Surname) </li>
+            </menu>
+        </div>
+    </header>
+    <div id="main">
+        <div id="mainStat">
+            <menu id="mainStatMenu">
+                <a href="~/Employee/SearchAgents"><li class="mainStatMenuLi">Search agents</li></a>
+                <a href="~/Employee/Vacancies"><li class="mainStatMenuLi" style="text-decoration: underline;">Selected vacancies</li></a>
+                <a href="~/EditEmployee.aspx"><li class="mainStatMenuLi">Private data</li></a>
+                <a href="~/LogOut"><li class="mainStatMenuLi" style="padding-left: 30px;">Log out</li></a>
+            </menu>
+        </div>
+        <div id="mainContent">
+            @if (ViewBag.Vacancies.Count > 0) {
+            <table>
+                <thead>
+                <th>Header</th>
+                <th>Min Salary</th>
+                <th>Max Salary</th>
+                <th>Company</th>
+                <th>Type Of Employment</th>
+                <th>City</th>
+                <th>Employer Name</th>
+                <th>Employer Phone</th>
+                <th>Unsubscribe</th>
+                
+                </thead>
+                <tbody>
+                    
+                        @foreach (WorkAtUa.Entities.MyVacancy s in ViewBag.Vacancies)
+                        {
+                            <tr>
+                                <td>@s.ProfessionName</td>
+                                <td>@s.MinSalary</td>
+                                <td>@s.MaxSalary</td>
+                                <td>@s.CompanyId</td>
+                                <td>@s.TypeOfEmployment</td>
+                                <td>@s.City</td>
+                                <td>@s.EmployerName</td>
+                                <td>@s.EmployerPhone</td>
+                                <td>
+                                    @using (Ajax.BeginForm("DeleteVacancy", new AjaxOptions
+                                    {
+                                        Url = Url.Action("SearchAjax"),
+                                        OnSuccess = "OnSuccessComment",
+                                        HttpMethod = "POST"
+                                    }))
+                                    {
+                                        <input id="id" name="id" type="number" style="display:none;" value="@s.Id" />
+                                        <input id="bodyContentFormSubmit" type="submit" value="Delete" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    
+                </tbody>
+            </table>
+            }
+            else
+            {
+                <div style="width: 143px; height:31px; color: gray; margin: auto; margin-top: 26%; font-size: 20pt;">No vacancies</div>
+            }
+        </div>
+    </div>
+    <footer id="footer">
+        <div class="headerLogo">
+            <span class="headerLogoWork" style="margin-left: 4%;">WORK</span><span class="headerLogoUa">.ua</span>
+        </div>
+        <span class="footerExp">&copy;Work.at.ua - Work in Ukraine. Made in Rivne</span>
+
+        <div id="footerLinks">
+            <div class="footerItem">
+                <a href="http://www.work.ua" class="footerLink">Work.at.ua</a>
+                <span class="footerLinkExp">Work in Ukraine</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.osvita.com.ua" class="footerLink">Osvita.com.ua</a>
+                <span class="footerLinkExp">Education</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.trn.ua" class="footerLink">TRN.ua</a>
+                <span class="footerLinkExp">Trainings</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.vse10.ru" class="footerLink">Vse10.ru</a>
+                <span class="footerLinkExp">Keybord traning</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.ratatype.com" class="footerLink">Ratatype.com</a>
+                <span class="footerLinkExp">Typing tutor</span>
+            </div>
+        </div>
+    </footer>
+</body>

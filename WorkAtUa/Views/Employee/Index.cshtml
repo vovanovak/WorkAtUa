@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Styles/null_style.css" />
+<link rel="stylesheet" type="text/css" href="~/Styles/employee_style.css" />
+
+<header id="header">
+    <div id="menu">
+        <div class="headerLogo">
+            <a href="~/Home" style="text-decoration: none;"><span class="headerLogoWork">WORK</span><span class="headerLogoUa">.ua</span></a>
+        </div>
+        <menu id="headerMenu">
+            <a href="~/Home"><li class="headerMenuLi">Find vacancies</li></a>
+            <a href="~/RegisterResume.aspx"><li class="headerMenuLi">Create resume</li></a>
+            <a href="http://www.work.ua"><li class="headerMenuLi">Resources</li></a>
+            <li class="headerMenuLi" style="color: #888888; font-size: 18pt;border-left:2px solid gray;padding-left: 30px;">@string.Format("{0} {1}", ViewBag.User.Name, ViewBag.User.Surname) </li>
+        </menu>
+    </div>
+</header>
+<div id="main">
+    <div id="mainStat">
+        <menu id="mainStatMenu">
+            <a href="~/Employee/SearchAgents"><li class="mainStatMenuLi">Search agents</li></a>
+            <a href="~/Employee/Vacancies"><li class="mainStatMenuLi">Selected vacancies</li></a>
+            <a href="~/EditEmployee.aspx"><li class="mainStatMenuLi">Private data</li></a>
+            <a href="~/LogOut"><li class="mainStatMenuLi" style="padding-left: 30px;">Log out</li></a>
+        </menu>
+    </div>
+    <div id="mainContent">
+        <div style="float:left;">
+            <h1 id="mainContentHeader">My Work.at.ua</h1>
+            <h1 id="mainContentHeaderCong">Hello, @ViewBag.User.Name!</h1>
+
+            <div id="mainContentSearchAgents">
+                <div id="mainContentSearchAgentsHeader">My search agents</div>
+                <div id="mainContentSearchAgentsExp">
+                    Don't lose new vacancies. The search agent created by you
+                    will be able to search new vacancies and send them to your mail.
+                    It will filter vacancies by the key words you enter. We hope it
+                    will help you to find job :)
+                </div>
+                <div id="mainContentSearchAgentsAdd">
+                    <img src="~/Images/i_plus_w.gif" /> <a href="~/Employee/SearchAgents">Add new search agent</a>
+                </div>
+            </div>
+
+            <div id="mainContentResumes">
+                <div id="mainContentResumesHeader">My resume</div>
+                <div id="mainContentResumesExp">
+                    On that page you will be able to create and manage your resume.
+                    If you want create new resume, please, push the button.
+                </div>
+                <div id="mainContentResumesAdd">
+                    <img src="~/Images/i_plus_w.gif" /> <a href="~/RegisterResume.aspx">Add new resume</a>
+                </div>
+            </div>
+        </div>
+        <div id="mainSidebar">
+            <div id="mainSidebarData">
+                <div id="mainSidebarDataHeader">My data</div>
+                <div id="mainSidebarDataExp">
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Client number: </span><span>@ViewBag.User.Id</span></div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Email: </span><span>@ViewBag.User.Email</span>  </div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">City: </span><span>@ViewBag.User.City</span>   </div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Phone: </span><span>@ViewBag.User.Phone</span>        </div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Birthday: </span><span>@ViewBag.User.Birthday</span>    </div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Surname: </span><span>@ViewBag.User.Surname</span>      </div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Name: </span><span>@ViewBag.User.Name</span>         </div>
+                    <div style="margin-top: 20px;"><span style="color: #808c97;padding-top: 20px;">Father's name: </span><span>@ViewBag.User.FathersName</span></div>
+               
+                </div>
+                <div id="mainSidebarDataAdd">
+                    <a href="~/EditEmployee.aspx">Change my data</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer id="footer">
+    <div class="headerLogo">
+        <span class="headerLogoWork" style="margin-left: 4%;">WORK</span><span class="headerLogoUa">.ua</span>
+    </div>
+    <span class="footerExp">&copy;Work.at.ua - Work in Ukraine. Made in Rivne</span>
+
+    <div id="footerLinks">
+        <div class="footerItem">
+            <a href="http://www.work.ua" class="footerLink">Work.at.ua</a>
+            <span class="footerLinkExp">Work in Ukraine</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.osvita.com.ua" class="footerLink">Osvita.com.ua</a>
+            <span class="footerLinkExp">Education</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.trn.ua" class="footerLink">TRN.ua</a>
+            <span class="footerLinkExp">Trainings</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.vse10.ru" class="footerLink">Vse10.ru</a>
+            <span class="footerLinkExp">Keybord traning</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.ratatype.com" class="footerLink">Ratatype.com</a>
+            <span class="footerLinkExp">Typing tutor</span>
+        </div>
+    </div>
+</footer>

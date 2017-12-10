@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0728ca52b34e42588a239775cefba07d" Name="Diagram1">
+        <EntityTypeShape EntityType="WorkAtUaModel.Category" Width="1.5" PointX="8" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.City" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.Comment" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.CompanyDetail" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.Education" Width="1.5" PointX="1.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.JobExperience" Width="1.5" PointX="1.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.Role" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.SearchAgent" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.SearchAgentsEmployer" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.SearchResult" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.SearchResultsEmployer" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.UserDetail" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.UserDetailsInCategory" Width="1.5" PointX="11.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.UserInCategory" Width="1.5" PointX="10.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.UserInRole" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.User" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.Vacancy" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.VacancyInCategory" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.VacancyInComment" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkAtUaModel.VacancyInUser" Width="1.5" PointX="8.25" PointY="15.625" IsExpanded="true" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserDetai__Categ__14D10B8B" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserInCat__Categ__25FB978D" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__VacancyIn__Categ__2F8501C7" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__Users__CityId__1C722D53" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__VacancyIn__Comme__335592AB" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__Users__CompanyDe__1D66518C" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__Vacancy__Company__28D80438" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserDetai__Educa__11007AA7" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserDetai__JobEx__100C566E" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserInRol__RoleI__222B06A9" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__SearchAge__UserI__3A02903A" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__SearchRes__Agent__4EFDAD20" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__SearchAge__UserI__53C2623D" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__SearchRes__Agent__5A6F5FCC" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__SearchRes__Vacan__4FF1D159" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__SearchRes__UserI__5B638405" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserDetai__UserD__13DCE752" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__Users__UserDetai__1E5A75C5" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserInCat__UserI__25077354" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__UserInRol__UserI__2136E270" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__VacancyIn__UserI__3726238F" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__VacancyIn__Vacan__2E90DD8E" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__VacancyIn__Vacan__32616E72" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkAtUaModel.FK__VacancyIn__Vacan__3631FF56" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

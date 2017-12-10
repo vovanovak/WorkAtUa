@@ -1,0 +1,170 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Work.at.ua - work in Ukraine</title>
+    <link rel="stylesheet" type="text/css" href="~/Styles/null_style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/main_style.css" />
+    <script src="~/Scripts/jquery-2.1.1.js">
+    </script>
+    <script>
+        function OnSuccessComment(data) {
+            alert(data.resultMessage);
+        }
+        function bodyOnload() {
+            $(".bodyWorkByCategoriesListItem").click(function () {
+                var text = $(this).text();
+                $("#bodyContentFormText").val(text);
+                $("#bodyContentFormSubmit").trigger("click");
+            });
+        }
+        function focusOnInput() {
+            $("#bodyContentFormText").focus();
+        }
+    </script>
+</head>
+<body onload="bodyOnload()">
+    
+<header id="header">
+    <div id="menu">
+        <div class="headerLogo">
+            <span class="headerLogoWork">WORK</span><span class="headerLogoUa">.ua</span>
+        </div>
+        <menu id="headerMenu">
+            <a onclick="focusOnInput()"><li class="headerMenuLi">Find vacancies</li></a>
+            @if (this.Session["Name"] != null)
+            {
+                 <a href="RegisterResume.aspx"><li class="headerMenuLi">Create resume</li></a>
+            }
+            else
+            {
+                <a href="SignIn.aspx"><li class="headerMenuLi">Create resume</li></a>
+            }
+            <a href="http://www.work.ua"><li class="headerMenuLi">Resources</li></a>
+           @if (this.Session["Name"] != null)
+           {
+               if (this.Session["Role"] == "Employer")
+               {
+                <a href="/Employer"><li class="headerMenuLi" style="text-decoration: underline;">@this.Session["Name"]</li></a>
+               }
+               else
+               {
+                <a href="/Employee"><li class="headerMenuLi" style="text-decoration: underline;">@this.Session["Name"]</li></a>
+               }
+           }
+           else
+           {
+            <a href="SignIn.aspx"><li style="list-style-type: none;"><div id="headerMenuButton">Sign In</div></li></a>
+           }
+        </menu>
+    </div>
+</header>
+
+ <article id="body">
+     <div id="bodyContent">
+         <div style="margin-left : auto; margin-right: auto; width: 1000px;">
+             <div id="bodyContentHeader">Find work easily!</div>
+             <div id="bodyContentExp">
+                 <span style="display: block;">Work.at.ua is the best work research site!</span>
+                 <span style="display: block;">Now we have @ViewBag.VacanciesCount vacancies!</span>
+             </div>
+             @using (Ajax.BeginForm("Search", new AjaxOptions
+             {
+                 Url = Url.Action("SearchAjax"),
+                 OnSuccess = "OnSuccessComment",
+                 HttpMethod = "POST"
+             }))
+             {
+                <input id="bodyContentFormText" placeholder="Request" type="text" name="request" />
+                <select id="bodyContentFormCity" name="city" style="width: 140px;">
+                    <option>All Ukraine</option>
+                    @foreach (string c in ViewBag.Cities)
+                    {
+                        <option>@c</option>
+                    }
+                </select>
+                <input id="bodyContentFormSubmit" type="submit" value="Search" />
+             }
+            
+         </div>
+
+        
+     </div>
+      <div id="bodyAbilities">
+             <div class="bodyAbility">
+                 <h1 class="bodyAbilityHeader">Create resume</h1>
+                 <span class="bodyAbilityExp">Employers can find you and <br /> give you the work</span>
+                 @if (this.Session["Name"] != null)
+                 {
+                     <a class="bodyAbilityLink" href="~/Views/Employee/Index">Add resume</a>
+                 }
+                 else
+                 {
+                     <a class="bodyAbilityLink" href="~/SignIn.aspx">Add resume</a>
+                 }
+                 
+             </div>
+             <div class="bodyAbility">
+                 <h1 class="bodyAbilityHeader">Subscribe on vacancy</h1>
+                 <span class="bodyAbilityExp">New vacancies will be send by email</span>
+                 @if (this.Session["Name"] != null)
+                 {
+                    <a class="bodyAbilityLink" href="~/Views/Employee/Index">Add search agent</a>
+                 }
+                 else
+                 {
+                     <a class="bodyAbilityLink" href="~/SignIn.aspx">Add search agent</a>
+                    
+                 }
+                 
+             </div>
+          <div class="bodyAbility">
+              <h1 id="bodyWorkByCategoriesHeader">Work by categories</h1>
+              <ul id="bodyWorkByCategoriesList">
+                  @foreach (string c in ViewBag.Categories)
+                  {
+                      <li class="bodyWorkByCategoriesListItem"><a>@c</a></li>
+                  }
+              </ul>
+          </div>
+        </div>
+    
+ </article>
+
+ <footer id="footer">
+    <div class="headerLogo">
+        <span class="headerLogoWork" style="margin-left: 4%;">WORK</span><span class="headerLogoUa">.ua</span>
+    </div>
+    <span class="footerExp">&copy;Work.at.ua - Work in Ukraine. Made in Rivne</span>
+
+    <div id="footerLinks">
+        <div class="footerItem">
+            <a href="http://www.work.ua" class="footerLink">Work.at.ua</a>
+            <span class="footerLinkExp">Work in Ukraine</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.osvita.com.ua" class="footerLink">Osvita.com.ua</a>
+            <span class="footerLinkExp">Education</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.trn.ua" class="footerLink">TRN.ua</a>
+            <span class="footerLinkExp">Trainings</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.vse10.ru" class="footerLink">Vse10.ru</a>
+            <span class="footerLinkExp">Keybord traning</span>
+        </div>
+        <div class="footerItem">
+            <a href="http://www.ratatype.com" class="footerLink">Ratatype.com</a>
+            <span class="footerLinkExp">Typing tutor</span>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

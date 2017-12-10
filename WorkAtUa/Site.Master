@@ -1,0 +1,83 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="WorkAtUa.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="~/Styles/null_style.css" />
+	<link rel="stylesheet" type="text/css" href="~/Styles/master_page_style.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+      
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <header id="header">
+            <div id="menu">
+			    <div class="headerLogo">
+				    <span class="headerLogoWork">WORK</span><span class="headerLogoUa">.ua</span>
+			    </div>
+			    <menu id="headerMenu">
+				    <a href="/Home"><li class="headerMenuLi">Find vacancies</li></a>
+                    <% if (this.Session["Name"] != null) { %>
+				    <a href="RegisterResume.aspx"><li class="headerMenuLi">Create resume</li></a>
+                    <% } else { %>
+                    <a href="SignIn.aspx"><li class="headerMenuLi">Create resume</li></a>
+                    <% } %>
+				    <a href="http://www.work.ua"><li class="headerMenuLi">Resources</li></a>
+                    <% if (this.Session["Name"] != null) { %>
+                        <% if (this.Session["Role"] == "Employer") { %>
+                            <a href="/Employer"><li class="headerMenuLi" style="text-decoration: underline;"><%=this.Session["Name"] %></li></a>
+                        <% } else { %>
+                            <a href="/Employee"><li class="headerMenuLi" style="text-decoration: underline;"><%=this.Session["Name"] %></li></a>
+                        <% } %>
+                    <% } else { %>
+                         <a href="SignIn.aspx"><li style="list-style-type: none;"><div id="headerMenuButton">Sign In</div></li></a>
+                    <% } %>
+			       
+			    </menu>
+            </div>
+		</header>
+        <div id="main">
+            <div id="mainStat">
+               <div style="margin-left: auto; margin-right: auto; width: 700px;">Now on site there are <%= WorkAtUa.DBManager.DbManager.GetVacancyCount1() %> vacancies and <%= WorkAtUa.DBManager.DbManager.GetUserCount() %> users</div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="Main" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer id="footer">
+			<div class="headerLogo">
+				<span class="headerLogoWork" style="margin-left: 4%;">WORK</span><span class="headerLogoUa">.ua</span>
+			</div>
+			<span class="footerExp">&copy;Work.at.ua - Work in Ukraine. Made in Rivne</span>
+				
+				<div id="footerLinks">
+                    <div class="footerItem">
+                        <a href="http://www.work.ua" class="footerLink">Work.at.ua</a>
+                        <span class="footerLinkExp">Work in Ukraine</span>
+                    </div>
+                    <div class="footerItem">
+                        <a href="http://www.osvita.com.ua" class="footerLink">Osvita.com.ua</a>
+                        <span class="footerLinkExp">Education</span>
+                    </div>
+                    <div class="footerItem">
+                        <a href="http://www.trn.ua" class="footerLink">TRN.ua</a>
+                        <span class="footerLinkExp">Trainings</span>
+                    </div>
+                    <div class="footerItem">
+                        <a href="http://www.vse10.ru" class="footerLink">Vse10.ru</a>
+                        <span class="footerLinkExp">Keybord traning</span>
+                    </div>
+                    <div class="footerItem">
+                        <a href="http://www.ratatype.com" class="footerLink">Ratatype.com</a>
+                        <span class="footerLinkExp">Typing tutor</span>
+                    </div>
+                </div>
+		</footer>
+    </div>
+    </form>
+</body>
+</html>

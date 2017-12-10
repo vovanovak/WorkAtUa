@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "Item";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Work.at.ua - work in Ukraine</title>
+    <link rel="stylesheet" type="text/css" href="~/Styles/null_style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/expanded_style.css" />
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script>
+        
+        function focusOnInput() {
+            $("#bodyContentFormText").focus();
+        }
+       
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div id="menu">
+            <div class="headerLogo">
+                <span class="headerLogoWork">WORK</span><span class="headerLogoUa">.ua</span>
+            </div>
+            <menu id="headerMenu">
+                <a onclick="focusOnInput()"><li class="headerMenuLi">Find vacancies</li></a>
+                @if (this.Session["Name"] != null)
+                {
+                    <a href="~/RegisterResume.aspx"><li class="headerMenuLi">Create resume</li></a>
+                }
+                else
+                {
+                    <a href="SignIn.aspx"><li class="headerMenuLi">Create resume</li></a>
+                }
+                <a href="http://www.work.ua"><li class="headerMenuLi">Resources</li></a>
+                @if (this.Session["Name"] != null)
+                {
+                    if (this.Session["Role"] == "Employer")
+                    {
+                        <a href="/Employer"><li class="headerMenuLi" style="text-decoration: underline;">@this.Session["Name"]</li></a>
+                    }
+                    else
+                    {
+                        <a href="/Employee"><li class="headerMenuLi" style="text-decoration: underline;">@this.Session["Name"]</li></a>
+                    }
+                }
+                else
+                {
+                    <a href="SignIn.aspx"><li style="list-style-type: none;"><div id="headerMenuButton">Sign In</div></li></a>
+                }
+            </menu>
+        </div>
+    </header>
+
+    <div id="mainStat">
+
+        <div style="width: 800px;  margin: 0 auto;">
+            @if (this.Session["Name"] != null)
+            {
+                <div class="sidebarItem"><a href="~/Employer/SearchAgents" style="color: white; text-decoration: none;">Search agents</a></div>
+                <div class="sidebarItem"><a href="~/Employer/Vacancies" style="color: white; text-decoration: none;">Your vacancies</a></div>
+                <div class="sidebarItem"><a href="~/EditEmployer.aspx" style="color: white; text-decoration: none;">Private data</a></div>
+                <div class="sidebarItem"><a href="~/LogOut" style="color: white; text-decoration: none;">Log out</a></div>
+            }
+            else
+            {
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Search agents</a></div>
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Your vacancies</a></div>
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Private data</a></div>
+                <div class="sidebarItem"><a href="~/SignIn.aspx" style="color: white; text-decoration: none;">Log out</a></div>
+            }
+        </div>
+    </div>
+
+
+
+    <div>
+
+
+        <div id="bodyVacancies">
+            
+            <div class="vac">
+                <div><span class="vacHeader">@string.Format("{0} {1} {2}", ViewBag.User.Surname, ViewBag.User.Name, ViewBag.User.FathersName)</span>
+                <div>
+                    <span class="vacSalary">   
+                        <span>@string.Format("{0}$", ViewBag.Resume.Salary.ToString())</span>
+                    </span>
+                </div>
+
+                <div style=" padding-top: 20px;
+                     padding-bottom: 20px;"><span class="vacDescHeader">General data</span></div>
+
+                <div style="margin-top: 30px;font-family: Arial,Tahoma,Verdana;">
+                    <div class="vacProp"><span class="vacPropName">Email: </span><span>@ViewBag.User.Email</span></div>
+                    <div class="vacProp"><span class="vacPropName">City: </span><span>@ViewBag.User.City</span></div>
+                    <div class="vacProp"><span class="vacPropName">Birthday: </span><span>@ViewBag.User.Birthday.ToShortDateString()</span></div>
+                    <div class="vacProp"><span class="vacPropName">Phone: </span><span></span>@ViewBag.User.Phone</div>
+                </div>
+
+                <div style=" padding-top: 20px;
+                     padding-bottom: 20px;"><span class="vacDescHeader">Resume info</span></div>
+                <div>
+                    <div class="vacProp"><span class="vacPropName">Header: </span><span>@ViewBag.Resume.Header</span></div>
+                    <div class="vacProp"><span class="vacPropName">Salary: </span><span>@ViewBag.Resume.Salary</span></div>
+                    <div class="vacProp"><span class="vacPropName">Birthday: </span><span>@ViewBag.User.Birthday.ToShortDateString()</span></div>
+                    <div class="vacProp"><span class="vacPropName">Phone: </span><span></span>@ViewBag.User.Phone</div>
+                  
+                    @if (ViewBag.Education == null)
+                    {
+                         <div style=" padding-top: 20px;
+                             padding-bottom: 20px;"><span class="vacDescHeader" style="font-size: 15pt;">No education</span></div>
+                    }
+                    else
+                    {
+                        <div style=" padding-top: 20px;
+                             padding-bottom: 20px;"><span class="vacDescHeader" style="font-size: 15pt;">Education</span></div>
+                        
+                        <div class="vacProp"><span class="vacPropName">Level: </span><span>@ViewBag.Education.Level</span></div>
+                        <div class="vacProp"><span class="vacPropName">Place: </span><span>@ViewBag.Education.Place</span></div>
+                        <div class="vacProp"><span class="vacPropName">Speciality: </span><span>@ViewBag.Education.Speciality</span></div>
+                    }
+
+                    @if (ViewBag.JobExp == null)
+                    {
+                        <div style=" padding-top: 20px;
+                             padding-bottom: 20px;"><span class="vacDescHeader" style="font-size: 15pt;">No job experience</span></div>
+                    }
+                    else
+                    {
+                        <div style=" padding-top: 20px;
+                             padding-bottom: 20px;"><span class="vacDescHeader" style="font-size: 15pt;">Job Experience</span></div>
+
+                        <div class="vacProp"><span class="vacPropName">Company: </span><span>@ViewBag.JobExp.Company</span></div>
+                        <div class="vacProp"><span class="vacPropName">City: </span><span>@ViewBag.JobExp.City</span></div>
+                        <div class="vacProp"><span class="vacPropName">Post: </span><span>@ViewBag.JobExp.Post</span></div>
+                        <div class="vacProp"><span class="vacPropName">Start date: </span><span>@ViewBag.JobExp.Start.ToShortDateString()</span></div>
+                        <div class="vacProp"><span class="vacPropName">End date: </span><span>@ViewBag.JobExp.End.ToShortDateString()</span></div>
+                        <div class="vacProp"><span class="vacPropName">Description: </span><span>@ViewBag.JobExp.Desc</span></div>
+                    }
+
+                   <div style=" padding-top: 20px;
+                        padding-bottom: 20px;"><span class="vacDescHeader" style="font-size: 15pt;">General resume description</span></div>
+
+                    <span class="vacDesc">
+                        @ViewBag.Resume.Description
+                    </span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <footer id="footer" style="margin-top: 10px;">
+        <div class="headerLogo">
+            <span class="headerLogoWork" style="margin-left: 4%;">WORK</span><span class="headerLogoUa">.ua</span>
+        </div>
+        <span class="footerExp">&copy;Work.at.ua - Work in Ukraine. Made in Rivne</span>
+
+        <div id="footerLinks">
+            <div class="footerItem">
+                <a href="http://www.work.ua" class="footerLink">Work.at.ua</a>
+                <span class="footerLinkExp">Work in Ukraine</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.osvita.com.ua" class="footerLink">Osvita.com.ua</a>
+                <span class="footerLinkExp">Education</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.trn.ua" class="footerLink">TRN.ua</a>
+                <span class="footerLinkExp">Trainings</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.vse10.ru" class="footerLink">Vse10.ru</a>
+                <span class="footerLinkExp">Keybord traning</span>
+            </div>
+            <div class="footerItem">
+                <a href="http://www.ratatype.com" class="footerLink">Ratatype.com</a>
+                <span class="footerLinkExp">Typing tutor</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
